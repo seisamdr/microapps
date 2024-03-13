@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom {
+  -webkit-text-stroke: 2px white;
+}
+
+.slick-arrow.slick-prev,
+.slick-arrow.slick-next {
+  background-color: rgb(186, 186, 186);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease-in-out;
+}
+
+.slick-arrow.slick-prev:hover,
+.slick-arrow.slick-next:hover {
+  background: rgb(146, 146, 146);
+}
+
+.slick-prev::before,
+.slick-next::before {
+  display: none;
+}
+
+.slick-prev {
+  position: absolute;
+  left: 0;
+  border-radius: 100%;
+}
+
+.slick-next {
+  right: 0;
+  border-radius: 100%;
+}
