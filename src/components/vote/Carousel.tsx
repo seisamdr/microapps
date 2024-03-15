@@ -39,8 +39,10 @@ const Carousel = () => {
     const fetchPaslons = async () => {
       try {
         const data = await getPaslon();
+
         const sortedData = data.sort((a, b) => a.id - b.id);
         setPaslons(sortedData);
+
         setPaslons(data);
       } catch (error) {
         console.error("Error fetching paslons for carousel:", error);

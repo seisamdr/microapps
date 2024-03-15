@@ -10,6 +10,10 @@ const ModalVoting: React.FC<any> = () => {
     const fetchPaslons = async () => {
       try {
         const response = await getPaslon();
+
+        const sortedData = response.sort((a, b) => a.id - b.id);
+        setPaslons(sortedData);
+
         setPaslons(response);
       } catch (error) {
         console.error("Error fetching paslons:", error);
@@ -33,17 +37,6 @@ const ModalVoting: React.FC<any> = () => {
           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none backdrop-filter backdrop-blur-sm bg-opacity-35 bg-black">
             <div className="relative w-auto mt-6 mx-auto max-w-5xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <div className="flex items-end mt-3 mr-3 justify-end">
-                  <button
-                    className="bg-transparent border-0 text-black flex items-center justify-center"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="text-black opacity-7 h-6 w-6 text-xl block bg-gray-400 rounded-full">
-                      x
-                    </span>
-                  </button>
-                </div>
-
                 <h3 className="text-4xl font-black text-center text-[#5E5400]">
                   MASUKAN PILIHAN MU
                 </h3>
@@ -66,11 +59,35 @@ const ModalVoting: React.FC<any> = () => {
                             <span className="text-[#5E5A00] text-lg font-semibold">
                               {paslon.name}
                             </span>
-                            <span className="text-sm">{paslon.visimisi}</span>
+                            <span className="text-sm">
+                              <ul className="list-disc ps-[40px]">
+                                {Array.isArray(paslon.visimisi) ? (
+                                  paslon.visimisi.map(
+                                    (paslon: string, i: number) => (
+                                      <li key={i}>{paslon}</li>
+                                    )
+                                  )
+                                ) : (
+                                  <li>{paslon.visimisi}</li>
+                                )}
+                              </ul>
+                            </span>
                             <span className="text-sm font-semibold mt-4">
                               Partai Pengusung :
                             </span>
-                            <span className="mt-2">{paslon.koalisi} :</span>
+                            <span className="mt-2">
+                              <ul className=" list-disc ps-[40px]">
+                                {Array.isArray(paslon.koalisi) ? (
+                                  paslon.koalisi.map(
+                                    (paslon: string, i: number) => (
+                                      <li key={i}>{paslon}</li>
+                                    )
+                                  )
+                                ) : (
+                                  <li>{paslon.koalisi}</li>
+                                )}
+                              </ul>
+                            </span>
                           </div>
                         </div>
                       </>
