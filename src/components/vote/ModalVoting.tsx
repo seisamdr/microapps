@@ -1,25 +1,23 @@
-import * as React from "react";
-import { IVotingModal } from "../../interface/votingmodal";
+import React, { useEffect, useState } from "react";
+import { getPaslon } from "../../services/paslon";
+import IVotes from "../../interface/votes";
 
-interface ModalVotingProps {
-  voting: IVotingModal[];
-}
+const ModalVoting: React.FC<any> = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [paslons, setPaslons] = useState<IVotes[]>([]);
 
-const ModalVoting: React.FC<ModalVotingProps> = ({ voting }) => {
-  const [showModal, setShowModal] = React.useState(false);
+  useEffect(() => {
+    const fetchPaslons = async () => {
+      try {
+        const response = await getPaslon();
+        setPaslons(response);
+      } catch (error) {
+        console.error("Error fetching paslons:", error);
+      }
+    };
 
-  const renderPartaiList = (partai: string) => {
-    const partaiArray = partai.split(", ");
-    return (
-      <ul className="mt-2">
-        {partaiArray.map((partaiItem, index) => (
-          <li className="list-disc ml-5" key={index}>
-            {partaiItem}
-          </li>
-        ))}
-      </ul>
-    );
-  };
+    fetchPaslons();
+  }, []);
 
   return (
     <>
@@ -50,7 +48,7 @@ const ModalVoting: React.FC<ModalVotingProps> = ({ voting }) => {
                   MASUKAN PILIHAN MU
                 </h3>
                 <div className="relative p-6 flex flex-row gap-4">
-                  {voting.map((vote, index) => {
+                  {paslons.map((paslon, index) => {
                     return (
                       <>
                         <div
@@ -59,20 +57,20 @@ const ModalVoting: React.FC<ModalVotingProps> = ({ voting }) => {
                         >
                           <div className="bg-center">
                             <img
-                              src={vote.image}
+                              src={paslon.image}
                               alt=""
                               className="h-[189px] w-full object-cover rounded-lg"
                             />
                           </div>
                           <div className="flex-col flex text-left mt-2">
                             <span className="text-[#5E5A00] text-lg font-semibold">
-                              {vote.name}
+                              {paslon.name}
                             </span>
-                            <span className="text-sm">{vote.title}</span>
-                            <span className="mt-4 font-semibold">
-                              {vote.list.title} :
+                            <span className="text-sm">{paslon.visimisi}</span>
+                            <span className="text-sm font-semibold mt-4">
+                              Partai Pengusung :
                             </span>
-                            {renderPartaiList(vote.list.partai)}
+                            <span className="mt-2">{paslon.koalisi} :</span>
                           </div>
                         </div>
                       </>

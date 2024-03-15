@@ -33,10 +33,6 @@ const Navbar: React.FC = () => {
 
         <div className="flex items-center">
           <ul className="flex items-center justify-center mr-10">
-            <li>Partai</li>
-            <li className="mx-6">|</li>
-            <li>Paslon</li>
-            <li className="mx-6">|</li>
             <li className="cursor-pointer" onClick={() => navigate("/vote")}>
               Voting
             </li>

@@ -3,5 +3,5 @@ export default interface IVotes {
   image: string;
   name: string;
   visimisi: any;
-  partai: any;
+  koalisi: any;
 }

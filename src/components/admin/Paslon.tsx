@@ -80,13 +80,10 @@ const ListTablePaslon: React.FC = () => {
         />
 
         <div className="flex justify-center items-center  overflow-x-auto ">
-          <table
-            className="table-auto border-collapse mt-6 lg:text-base text-xs"
-            style={{ tableLayout: "fixed" }}
-          >
+          <table className="table-auto border-collapse mt-6 lg:text-base text-xs">
             <thead>
               <tr>
-                <th className="lg:px-6 lg:py-3.5" colSpan={6}>
+                <th className="lg:px-4 lg:py-3.5" colSpan={6}>
                   <button
                     onClick={handleAddPaslon}
                     className="bg-[#5E5400] text-white px-4 py-3 mb-3 rounded-md items-start justify-start justify-items-start"
@@ -96,22 +93,22 @@ const ListTablePaslon: React.FC = () => {
                 </th>
               </tr>
               <tr>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   No
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Image
                 </th>
-                <th className="border lg:px-6 lg:py-3.5  border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5  border-gray-600 bg-table">
                   Nama
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Visi & Misi
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Koalisi
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Action
                 </th>
               </tr>
@@ -121,8 +118,8 @@ const ListTablePaslon: React.FC = () => {
               {paslons.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={7}
-                    className="border lg:px-6 lg:py-4 text-center italic text-slate-700 border-gray-600"
+                    colSpan={6}
+                    className="border lg:px-4 lg:py-4 text-center italic text-slate-700 border-gray-600"
                   >
                     Belum ada data
                   </td>
@@ -130,16 +127,16 @@ const ListTablePaslon: React.FC = () => {
               ) : (
                 paslons.map((paslon: any, index: number) => (
                   <tr key={index}>
-                    <td className="border lg:px-6 lg:py-3 border-gray-600">
+                    <td className="border lg:px-4 lg:py-3 border-gray-600">
                       {index + 1}
                     </td>
                     <td className="border px-6 py-3 border-gray-600">
                       <img src={paslon.image} className="w-78 h-94" alt="" />
                     </td>
-                    <td className="border lg:px-6 lg:py-3 border-gray-600">
+                    <td className="border lg:px-4 lg:py-3 border-gray-600">
                       {paslon.name}
                     </td>
-                    <td className="border lg:px-6 lg:py-3 border-gray-600">
+                    <td className="border lg:px-5 lg:py-3 border-gray-600">
                       <ul className="list-disc">
                         {Array.isArray(paslon.visimisi) ? (
                           paslon.visimisi.map((item: string, i: number) => (
@@ -150,7 +147,7 @@ const ListTablePaslon: React.FC = () => {
                         )}
                       </ul>
                     </td>
-                    <td className="border lg:px-6 lg:py-3 border-gray-600">
+                    <td className="border lg:px-5 lg:py-3 border-gray-600">
                       <ul className="list-disc">
                         {Array.isArray(paslon.koalisi) ? (
                           paslon.koalisi.map((item: string, i: number) => (
@@ -161,11 +158,11 @@ const ListTablePaslon: React.FC = () => {
                         )}
                       </ul>
                     </td>
-                    <td className="border lg:px-6 lg:py-3 border-gray-600 text-center">
+                    <td className="border lg:px-4 lg:py-3 border-gray-600 text-center">
                       <div className="flex flex-col justify-center items-center">
                         <button
                           onClick={() => handleEdit(paslon.id)}
-                          className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2"
+                          className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4"
                         >
                           <FontAwesomeIcon icon={faEdit} />
                         </button>

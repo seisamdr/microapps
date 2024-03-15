@@ -46,6 +46,13 @@ const NavbarAdmin: React.FC = () => {
             >
               Paslon
             </li>
+            <li>|</li>
+            <li
+              className="cursor-pointer"
+              onClick={() => navigate("/admin/article")}
+            >
+              Article
+            </li>
           </ul>
 
           <p className="bg-white text-black h-9 w-9 rounded-full flex items-center justify-center">

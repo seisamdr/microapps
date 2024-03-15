@@ -1,23 +1,22 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import monkeyking from "../../assets/images/monkeyking.png";
+import headline from "../../assets/images/headline.png";
 import { useNavigate } from "react-router-dom";
+import { User } from "../../../../backend/src/entity/User";
 
 interface IForm {
-  name: string;
-  image: string;
-  visimisi: string;
-  koalisi: string;
-  partai: number;
+  createdAt: string;
+  title: string;
+  content: string;
+  author: User;
 }
 
-const AddPaslonForm: React.FC = () => {
+const AddArticleForm: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<IForm>({
-    name: "",
-    image: "/images/monkey-table.png",
-    visimisi: "",
-    koalisi: "",
-    partai: 1,
+    createdAt: "",
+    title: "",
+    content: "",
+    author: {} as User,
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,12 +26,6 @@ const AddPaslonForm: React.FC = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const formattedData = {
-        ...formData,
-        visimisi: JSON.stringify(formData.visimisi),
-        koalisi: JSON.stringify(formData.koalisi),
-      };
-
       const response = await fetch(
         "http://localhost:5000/api/v1/admin/paslon",
         {
@@ -40,7 +33,7 @@ const AddPaslonForm: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formattedData),
+          body: JSON.stringify(formData),
         }
       );
       if (response.ok) {
@@ -56,55 +49,35 @@ const AddPaslonForm: React.FC = () => {
   return (
     <div className="container">
       <h1 className="text-bottomvote text-5xl font-black text-center mt-24">
-        ADD PASLON
+        ADD ARTICLE
       </h1>
       <form className="flex justify-center" onSubmit={handleSubmit}>
         <div className="lg:flex lg:justify-center lg:gap-12  ">
-          <div className="flex justify-center ">
-            <img
-              src={monkeyking}
-              alt=""
-              className="lg:w-368 w-[345px] h-523 radius-xl mt-14"
-            />
-          </div>
           <div className="flex justify-center">
             <div className="flex flex-col">
               <label
-                htmlFor="name"
+                htmlFor="title"
                 className="text-2xl font-bold text-logincolor mt-10"
               >
-                Nama
+                Title
               </label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="title"
+                value={formData.title}
                 onChange={handleChange}
                 className="lg:w-478 lg:h-70 w-[330px] h-[40px]  border-logincolor border-2 rounded-2xl mt-3 px-6 font-medium"
               />
               <label
-                htmlFor="visimisi"
+                htmlFor="content"
                 className="text-2xl font-bold text-logincolor mt-5"
               >
-                Visi & Misi
+                Content
               </label>
               <input
                 type="text"
-                name="visimisi"
-                value={formData.visimisi}
-                onChange={handleChange}
-                className="lg:w-478 lg:h-200 w-[330px] h-[110px] border-logincolor border-2 rounded-2xl mt-3 px-6 font-medium"
-              />
-              <label
-                htmlFor="koalisi"
-                className="text-2xl font-bold text-logincolor mt-5"
-              >
-                Koalisi
-              </label>
-              <input
-                type="text"
-                name="koalisi"
-                value={formData.koalisi}
+                name="content"
+                value={formData.content}
                 onChange={handleChange}
                 className="lg:w-478 lg:h-200 w-[330px] h-[110px] border-logincolor border-2 rounded-2xl mt-3 px-6 font-medium"
               />
@@ -122,4 +95,4 @@ const AddPaslonForm: React.FC = () => {
   );
 };
 
-export default AddPaslonForm;
+export default AddArticleForm;

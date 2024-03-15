@@ -8,6 +8,7 @@ interface IForm {
   leader: string;
   visimisi: string;
   address: string;
+  paslon: number;
 }
 
 const AddPartaiForm: React.FC = () => {
@@ -18,6 +19,7 @@ const AddPartaiForm: React.FC = () => {
     leader: "",
     visimisi: "",
     address: "",
+    paslon: 1,
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

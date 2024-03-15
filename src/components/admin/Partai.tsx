@@ -73,15 +73,6 @@ const Partai: React.FC = () => {
           LIST PARTAI
         </h1>
 
-        <div className="flex items-start ml-[118px] justify-start mt-4">
-          <button
-            onClick={handleAddPartai}
-            className="bg-[#5E5400] text-white px-4 py-3 mr-32 rounded-md"
-          >
-            Add Partai
-          </button>
-        </div>
-
         <DeleteConfirmationModal
           isOpen={deleteModalOpen}
           onClose={closeDeleteModal}
@@ -89,31 +80,38 @@ const Partai: React.FC = () => {
         />
 
         <div className="flex justify-center items-center  overflow-x-auto ">
-          <table
-            className="table-auto border-collapse mt-6 lg:text-base text-xs"
-            style={{ tableLayout: "fixed" }}
-          >
+          <table className="table-auto border-collapse mt-6 lg:text-base text-xs">
             <thead>
               <tr>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="lg:px-4 lg:py-3.5" colSpan={7}>
+                  <button
+                    onClick={handleAddPartai}
+                    className="bg-[#5E5400] text-white px-4 py-3 mb-3 rounded-md items-start justify-start justify-items-start"
+                  >
+                    Add Partai
+                  </button>
+                </th>
+              </tr>
+              <tr>
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   No
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Logo
                 </th>
-                <th className="border lg:px-6 lg:py-3.5  border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5  border-gray-600 bg-table">
                   Nama
                 </th>
-                <th className="border lg:px-6 lg:py-3.5  border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5  border-gray-600 bg-table">
                   Ketua Umum
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Visi & Misi
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Alamat
                 </th>
-                <th className="border lg:px-6 lg:py-3.5 border-gray-600 bg-table">
+                <th className="border lg:px-4 lg:py-3.5 border-gray-600 bg-table">
                   Action
                 </th>
               </tr>
@@ -124,7 +122,7 @@ const Partai: React.FC = () => {
                 <tr>
                   <td
                     colSpan={7}
-                    className="border lg:px-6 lg:py-4 text-center italic text-slate-700 border-gray-600"
+                    className="border lg:px-4 lg:py-4 text-center italic text-slate-700 border-gray-600"
                   >
                     Belum ada data
                   </td>
@@ -132,19 +130,19 @@ const Partai: React.FC = () => {
               ) : (
                 partai.map((partai: any, index: number) => (
                   <tr key={index}>
-                    <td className="border lg:px-6 lg:py-3 text-center border-gray-600">
+                    <td className="border lg:px-4 lg:py-3 text-center border-gray-600">
                       {index + 1}
                     </td>
-                    <td className="border lg:px-6 lg:py-3  border-gray-600">
+                    <td className="border lg:px-4 lg:py-3  border-gray-600">
                       <img src={partai.image} className="w-78 h-94" alt="" />
                     </td>
-                    <td className="border lg:px-6 lg:py-3  border-gray-600">
+                    <td className="border lg:px-4 lg:py-3  border-gray-600">
                       {partai.name}
                     </td>
-                    <td className="border lg:px-6 lg:py-3  border-gray-600">
+                    <td className="border lg:px-4 lg:py-3  border-gray-600">
                       {partai.leader}
                     </td>
-                    <td className="border lg:px-6 lg:py-3 border-gray-600">
+                    <td className="border lg:px-5 lg:py-3 border-gray-600">
                       <ul className="list-disc">
                         {Array.isArray(partai.visimisi) ? (
                           partai.visimisi.map((item: string, i: number) => (
@@ -155,14 +153,14 @@ const Partai: React.FC = () => {
                         )}
                       </ul>
                     </td>
-                    <td className="border lg:px-6 lg:py-3  border-gray-600">
+                    <td className="border lg:px-4 lg:py-3  border-gray-600">
                       {partai.address}
                     </td>
-                    <td className="border lg:px-6 lg:py-3 border-gray-600 text-center">
+                    <td className="border lg:px-4 lg:py-3 border-gray-600 text-center">
                       <div className="flex flex-col justify-center items-center">
                         <button
                           onClick={() => handleEdit(partai.id)}
-                          className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2"
+                          className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4"
                         >
                           <FontAwesomeIcon icon={faEdit} />
                         </button>

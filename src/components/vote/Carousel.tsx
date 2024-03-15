@@ -3,7 +3,9 @@ import "swiper/css";
 import "../../index.css";
 import Profil from "../../assets/images/monkey.png";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import DataCarousel from "../../mocks/DataCarousel.json";
+import { useEffect, useState } from "react";
+import { getPaslon } from "../../services/paslon";
+import IVotes from "../../interface/votes";
 
 const sliderSettings = {
   spaceBetween: 50,
@@ -31,10 +33,27 @@ const SliderButton = () => {
 };
 
 const Carousel = () => {
+  const [paslons, setPaslons] = useState<IVotes[]>([]);
+
+  useEffect(() => {
+    const fetchPaslons = async () => {
+      try {
+        const data = await getPaslon();
+        const sortedData = data.sort((a, b) => a.id - b.id);
+        setPaslons(sortedData);
+        setPaslons(data);
+      } catch (error) {
+        console.error("Error fetching paslons for carousel:", error);
+      }
+    };
+
+    fetchPaslons();
+  }, []);
+
   return (
     <Swiper {...sliderSettings}>
       <SliderButton />
-      {DataCarousel.map((item, index) => (
+      {paslons.map((item, index) => (
         <SwiperSlide key={index}>
           <div className="flex justify-center items-center h-[600px]">
             <div className="bg-white w-[900px] h-[494px] flex justify-center items-center gap-[30px] p-[50px] rounded-[10px] shadow-xl shadow-neutral-400">
@@ -48,22 +67,30 @@ const Carousel = () => {
 
               <div>
                 <p className="text-[24px] font-[700]">
-                  Nomor Urut: {item.noUrut}
+                  Nomor Urut: {index + 1}
                 </p>
                 <p className="text-[40px] font-[700]  text-reddark-2">
-                  {item.namaPaslon}
+                  {item.name}
                 </p>
                 <p className="text-[24px] font-[400]">Visi & Misi:</p>
                 <ul className="text-[24px] font-[400] list-disc ps-[40px]">
-                  <li>{item.visiMisi[0]}</li>
-                  <li>{item.visiMisi[1]}</li>
-                  <li>{item.visiMisi[2]}</li>
+                  {Array.isArray(item.visimisi) ? (
+                    item.visimisi.map((item: string, i: number) => (
+                      <li key={i}>{item}</li>
+                    ))
+                  ) : (
+                    <li>{item.visimisi}</li>
+                  )}
                 </ul>
                 <p className="text-[24px] font-[400]">Koalisi:</p>
                 <ul className="text-[24px] font-[400] list-disc ps-[40px]">
-                  <li>{item.koalisi[0]}</li>
-                  <li>{item.koalisi[1]}</li>
-                  <li>{item.koalisi[2]}</li>
+                  {Array.isArray(item.koalisi) ? (
+                    item.koalisi.map((item: string, i: number) => (
+                      <li key={i}>{item}</li>
+                    ))
+                  ) : (
+                    <li>{item.koalisi}</li>
+                  )}
                 </ul>
               </div>
             </div>

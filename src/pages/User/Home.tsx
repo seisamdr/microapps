@@ -22,6 +22,7 @@ const Home: React.FC = () => {
 
     fetchArticles();
   }, []);
+
   return (
     <div className="bg-zinc-300">
       <Navbar />
@@ -34,10 +35,10 @@ const Home: React.FC = () => {
                 <Section
                   id={data.id}
                   image={data.image}
-                  date={data.date}
+                  createdAt={data.createdAt}
                   title={data.title}
                   author={data.author}
-                  detail={data.detail}
+                  content={data.content}
                 />
               </div>
             );

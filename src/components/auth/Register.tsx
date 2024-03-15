@@ -11,6 +11,7 @@ const Register: React.FC = () => {
     gender: "",
     username: "",
     password: "",
+    role: "User",
   });
 
   const handleOnChange = (
@@ -47,19 +48,13 @@ const Register: React.FC = () => {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const config = {
+        const response = await fetch("http://localhost:5000/api/v1/register", {
           method: "POST",
           headers: {
-            Accept: "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formRegister),
-        };
-
-        const response = await fetch(
-          "http://localhost:5000/api/v1/register",
-          config
-        );
+        });
 
         if (!response.ok) {
           throw new Error(`Failed to register: ${response.statusText}`);

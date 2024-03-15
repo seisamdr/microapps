@@ -130,29 +130,27 @@ const Admin: FC<AdminProps> = ({ Voters }) => {
                   </th>
                 </tr>
               </thead>
-              {Voters.map((member, index) => {
+              {Voters.map((member) => {
                 return (
-                  <>
-                    <tbody key={index} className=" text-left bg-white">
-                      <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
-                          {member.no}
-                        </td>
-                        <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
-                          {member.name}
-                        </td>
-                        <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
-                          {member.address}
-                        </td>
-                        <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
-                          {member.gender}
-                        </td>
-                        <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500 text-[#061E99]">
-                          {member.paslon}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </>
+                  <tbody key={member.no} className=" text-left bg-white">
+                    <tr className="border-b dark:border-neutral-500">
+                      <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
+                        {member.no}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
+                        {member.name}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
+                        {member.address}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500">
+                        {member.gender}
+                      </td>
+                      <td className="whitespace-nowrap border-r px-4 py-3 font-medium dark:border-neutral-500 text-[#061E99]">
+                        {member.paslon}
+                      </td>
+                    </tr>
+                  </tbody>
                 );
               })}
             </table>
